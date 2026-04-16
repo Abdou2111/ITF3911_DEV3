@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IFT3911 - Devoir 3 - Patrons de conception</title>
+
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1, h2, h3 { color: #003366; }
+table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+th, td { border: 1px solid black; padding: 8px; text-align: center; }
+img { max-width: 100%; margin-top: 15px; }
+.section { margin-top: 50px; }
+.fullscreen-iframe { width: 100%; height: 100vh; border: none; }
+</style>
+
+</head>
+
+<body>
+
+<h1><center>IFT3911 - Hiver 2026</center></h1>
+<h2><center>Devoir 3</center></h2>
+<h2><center>Patrons de conception</center></h2>
+
+<hr>
+
+<h2>Équipe Tango</h2>
+
+<ul>
+<li><strong>Dabo Fahîma :</strong> tunwend-raabo.fahima.c.dabo@umontreal.ca | Matricule : 6362 | Temps investi : 38 heures </li><br>
+<li><strong>Jean Paul Marc Olivier  :</strong>  marc.olivier.jean.paul@umontreal.ca | Matricule : 1763 | Temps investi : 40 heures</li><br>
+<li><strong>Guinguiere Reine :</strong> wendkuni.reine.rosine.guinguiere@umontreal.ca | Matricule : 1523 | Temps investi : 36 heures</li><br>
+<li><strong>Rahmouni Abdelghafour :</strong> abdel.ghafour.rahmouni@umontreal.ca | Matricule : 6224 | Temps investi : 39 heures</li>
+</ul>
+
+<!-- ========================== -->
+<div class="Fabrique">
+
+<h2>1. Patron Fabrique </h2>
+
+<img src="Design\img\DC_fabrique_abstraite.svg">
+<img src="Design\img\Ds_fabrique.svg">
+
+<p>
+Le patron Fabrique est utilisé pour encapsuler la création des entités de voyage (Vol, Trajet, Itinéraire).
+Chaque type de transport possède sa propre fabrique spécialisée (FabriqueAvion, FabriqueTrain, FabriqueBateau).
+Nous avons decidé de travailler sur une fabrique abstraite  due au fait que le singleton  y est  implicitement  
+et don aussi pour éviter la duplication de code et faciliter l’ajout de nouveaux types de transport à l’avenir.
+</p>
+
+
+
+<p><b>Amélioration :</b> découplage entre création et utilisation des objets.</p>
+
+</div>
+
+
+<!-- ========================== -->
+
+<div class="Singleton">
+
+<h2>2.  Singleton</h2>
+
+<img src="Design\DC_singleton.svg">
+
+
+
+<p>
+Le patron Singleton est combiné à la fabrique afin de garantir une instance unique de chaque fabrique.
+Cela permet de centraliser la création des objets et d’éviter la duplication des instances.
+</p>
+
+<p><b>Amélioration :</b> découplage entre création et utilisation des objets.</p>
+
+</div>
+
+
+<!-- ========================== -->
+<div class="Etat">
+
+<h2>3. Patron État</h2>
+
+<img src="Design\img\DC_etat.svg">
+<img src="Design\img\Ds_etat.svg">
+
+<p>
+Le patron État est utilisé pour gérer les différents états d’une réservation ou d’un siège :
+Disponible, Réservé, Confirmé, Annulé.
+</p>
+
+<p>
+Chaque état encapsule son propre comportement, ce qui évite les structures conditionnelles complexes.
+</p>
+
+<p><b>Amélioration :</b> meilleure extensibilité et respect du principe OCP.</p>
+
+</div>
+
+<!-- ========================== -->
+<div class="Observateur">
+
+<h2>4. Patron Observateur</h2>
+
+<img src="Design\img\DC_observateur.svg">
+<img src="Design\img\Ds_observateur.svg">
+
+<p>
+Le modèle interne agit comme sujet (Subject) tandis que les interfaces client et administrateur sont des observateurs.
+</p>
+
+<p>
+Toute modification du modèle est automatiquement propagée aux vues.
+</p>
+
+<p><b>Amélioration :</b> synchronisation automatique et faible couplage.</p>
+
+</div>
+
+<!-- ========================== -->
+<div class="Commande">
+
+<h2>5. Patron Commande</h2>
+
+<img src="Design\img\DC_commande.svg">
+<img src="Design\img\Ds_commande.svg">
+
+<p>
+Chaque action administrative est encapsulée dans une commande (AjouterVoyage, ModifierPrix, etc.).
+</p>
+
+<p>
+Les commandes peuvent être annulées grâce à une pile d’historique.
+</p>
+
+<p><b>Amélioration :</b> gestion du undo et découplage des actions.</p>
+
+</div>
+
+<!-- ========================== -->
+<div class="Visiteur">
+
+<h2>6. Patron Visiteur</h2>
+
+<img src="Design\img\DC_visiteur.svg">
+<img src="Design\img\Ds_visiteur.svg">
+
+<p>
+Le patron Visiteur est utilisé pour produire différents formats d’affichage des voyages :
+administratif et client.
+</p>
+
+<p>
+Cela permet de séparer la logique métier de la logique d’affichage.
+</p>
+
+<p><b>Amélioration :</b> ajout de nouveaux comportements sans modifier les classes.</p>
+
+</div>
+
+<!-- ========================== -->
+<div class="PatternsAdditionnels">
+
+<h2>7. Patrons additionnels</h2>
+
+<h3>7.1 Strategie </h3>
+<img src="Design\img\DC_strategy.svg">
+<p>
+Utilisé pour gérer différents calculs de prix.
+Permet de changer dynamiquement l’algorithme.
+</p>
+
+<h3>7.2 Proxy</h3>
+<img src="Design\img\DC_proxy.svg">
+<p>
+Permet d’intégrer de nouveaux systèmes de transport sans modifier le code existant.
+</p>
+
+</div>
+
+<!-- ========================== -->
+<div class="DiagrammePaquet">
+
+<h2>8. Diagramme de paquets</h2>
+
+<img src="Design\img\Diagramme_de_paquet.svg">
+
+<p>
+Le système est structuré en modules : Voyage, Réservation, Interface, Fabrique, etc.
+</p>
+
+</div>
+
+<!-- ========================== -->
+<div class="Qualite">
+
+<h2>9. Amélioration de la qualité du design par rapport au devoir 2</h2>
+
+<p>
+Par rapport au design produit au devoir 2, le design du devoir 3 présente une amélioration nette de la qualité
+architecturale du système. Alors que le devoir 2 cherchait surtout à obtenir une conception modulaire, cohésive
+et relativement réutilisable, le devoir 3 pousse cette logique plus loin en introduisant explicitement des
+patrons de conception. Ceux-ci permettent de mieux contrôler la création des objets, de mieux répartir les
+responsabilités, de réduire les dépendances directes entre modules et de rendre le système plus facile à faire
+évoluer.
+</p>
+
+<p>
+Notre analyse comparative repose principalement sur les critères suivants :
+la modularité, le couplage, la cohésion, l’extensibilité, la maintenabilité, la réutilisabilité et la clarté
+des dépendances entre paquets.
+</p>
+
+<h3>9.1 Amélioration de la modularité</h3>
+
+<p>
+Dans le devoir 2, la structure générale du système était déjà organisée autour de classes métier importantes
+comme <i>Voyage</i>, <i>Reservation</i>, <i>Compagnie</i>, <i>LieuTransport</i> et <i>Section</i>. Cette organisation
+était correcte, mais plusieurs responsabilités restaient encore concentrées dans les mêmes zones du système :
+la création des objets, la gestion des états, la logique d’affichage, la synchronisation des vues et la gestion
+des opérations administratives.
+</p>
+
+<p>
+Dans le devoir 3, ces responsabilités ont été davantage isolées dans des modules spécialisés grâce aux patrons de
+conception. La création des objets a été extraite dans des fabriques, la gestion du cycle de vie des sièges et
+cabines a été encapsulée dans le patron État, la cohérence entre le modèle et les différentes vues a été confiée
+au patron Observateur, les actions administratives annulables ont été regroupées dans le patron Commande et
+la logique d’affichage a été séparée du domaine à l’aide du patron Visiteur.
+</p>
+
+<p>
+Cette répartition améliore directement la modularité, car chaque sous-système devient responsable d’un aspect
+bien délimité du comportement global. Le système n’est donc plus seulement structuré par classes métier, mais
+également par mécanismes de collaboration clairement identifiés.
+</p>
+
+<h3>9.2 Réduction du couplage</h3>
+
+<p>
+L’un des principaux problèmes d’un design métier classique est le risque de dépendances trop directes entre
+les objets du domaine et les mécanismes techniques. Dans le devoir 2, certaines interactions restaient encore
+fortement liées à des classes concrètes. Par exemple, la création de différents types d’objets de transport pouvait
+impliquer une connaissance trop explicite des classes concrètes utilisées.
+</p>
+
+<p>
+L’introduction du patron Fabrique, combiné au patron Singleton, réduit ce couplage. Le reste du système n’a plus
+besoin de connaître en détail les constructeurs ni les classes concrètes exactes impliquées dans la création des
+objets. Le système dépend désormais d’un mécanisme abstrait de création. Cette amélioration va dans le sens du
+principe d’inversion des dépendances (DIP), puisque le code client dépend d’abstractions de création et non de
+constructeurs concrets dispersés.
+</p>
+
+<p>
+Le patron Observateur diminue également le couplage entre le modèle et les interfaces. Dans le devoir 2, une mise
+à jour d’une vue pouvait être pensée de façon plus directe ou plus procédurale. Dans le devoir 3, les vues
+administrateur et client ne se connaissent pas mutuellement ; elles dépendent uniquement du sujet observé.
+On obtient donc un couplage plus faible entre les interfaces tout en préservant la cohérence des données.
+</p>
+
+<p>
+Le patron Commande réduit aussi le couplage entre l’interface administrative et les objets métier. L’interface
+ne manipule plus directement toute la logique de modification ; elle délègue cette responsabilité à des objets
+commande spécialisés. Cela rend l’architecture plus flexible et plus facile à étendre.
+</p>
+
+<h3>9.3 Renforcement de la cohésion</h3>
+
+<p>
+Le devoir 3 améliore également la cohésion du système. Dans le devoir 2, plusieurs classes jouaient déjà un rôle
+métier cohérent, mais certaines responsabilités transversales n’étaient pas encore complètement isolées.
+Par exemple, la logique d’affichage pouvait encore être trop proche des entités de voyage, et la gestion des
+transitions d’état pouvait reposer sur une logique conditionnelle centralisée.
+</p>
+
+<p>
+Avec le patron État, la logique de transition et de comportement selon l’état est déplacée dans des classes
+spécialisées. Chaque état possède sa responsabilité propre, ce qui évite d’accumuler des conditions complexes
+dans une seule classe. Cela augmente la cohésion, puisque chaque classe d’état ne gère qu’un comportement bien
+défini.
+</p>
+
+<p>
+Avec le patron Visiteur, la logique d’affichage est extraite des classes métier. Les entités comme les voyages,
+trajets ou itinéraires n’ont plus à porter elles-mêmes les différents formats de sortie. Elles se concentrent
+sur leur rôle métier, tandis que le visiteur prend en charge la représentation destinée à l’administration ou au
+client. Cette séparation améliore la cohésion des entités du domaine en les recentrant sur leurs données et leur
+comportement essentiel.
+</p>
+
+<h3>9.4 Meilleur respect des principes SOLID et GRASP</h3>
+
+<p>
+Le design du devoir 3 respecte mieux les principes de conception que celui du devoir 2.
+</p>
+
+<ul>
+  <li><b>SRP (Single Responsibility Principle)</b> :
+    les responsabilités sont mieux séparées. La création, les transitions d’état, l’affichage,
+    la synchronisation des vues et l’annulation des actions ne sont plus mélangés dans les mêmes classes.
+  </li>
+
+  <li><b>OCP (Open/Closed Principle)</b> :
+    le système est plus ouvert à l’extension. Il est désormais possible d’ajouter un nouveau type de voyage,
+    un nouvel état, un nouveau format d’affichage ou une nouvelle commande avec moins de modifications dans
+    les classes déjà existantes.
+  </li>
+
+  <li><b>DIP (Dependency Inversion Principle)</b> :
+    plusieurs dépendances directes envers des classes concrètes sont remplacées par des mécanismes plus abstraits,
+    notamment avec les fabriques, les observateurs et les visiteurs.
+  </li>
+
+  <li><b>GRASP – Faible couplage</b> :
+    les patrons utilisés réduisent les dépendances directes entre modules et limitent la propagation des changements.
+  </li>
+
+  <li><b>GRASP – Haute cohésion</b> :
+    chaque groupe de classes spécialisé par patron possède un rôle clair et limité.
+  </li>
+
+  <li><b>GRASP – Polymorphisme</b> :
+    le comportement varie davantage par polymorphisme que par conditions,
+    notamment avec État, Visiteur et les fabriques concrètes.
+  </li>
+</ul>
+
+<h3>9.5 Amélioration de l’extensibilité</h3>
+
+<p>
+L’un des objectifs explicites du devoir 3 est de préparer le système à des extensions futures.
+Sur ce point, la qualité du design est clairement supérieure à celle du devoir 2.
+</p>
+
+<p>
+Dans le design précédent, l’ajout de nouvelles variantes fonctionnelles risquait davantage d’entraîner des
+modifications dans des classes existantes. Par exemple, ajouter une nouvelle famille d’entités de voyage,
+un nouvel état de siège ou un nouveau format d’affichage pouvait nécessiter une révision de plusieurs classes.
+</p>
+
+<p>
+Dans le design actuel, ces évolutions sont mieux localisées :
+</p>
+
+<ul>
+  <li>un nouveau type d’entité de transport peut être intégré via une nouvelle fabrique concrète ;</li>
+  <li>un nouvel état peut être ajouté par une nouvelle classe d’état ;</li>
+  <li>un nouvel affichage peut être introduit via un nouveau visiteur ;</li>
+  <li>une nouvelle opération annulable peut être ajoutée par une nouvelle commande ;</li>
+  <li>de nouvelles politiques de calcul peuvent être prises en charge par le patron Stratégie.</li>
+</ul>
+
+<p>
+Cette capacité à ajouter de nouvelles fonctionnalités sans déstabiliser le cœur du système constitue une amélioration
+majeure par rapport au devoir 2.
+</p>
+
+<h3>9.6 Amélioration de la maintenabilité</h3>
+
+<p>
+Le design du devoir 3 est aussi plus maintenable. Une architecture est maintenable lorsque les changements peuvent être
+introduits avec un impact limité, dans des zones clairement identifiées. Grâce aux patrons introduits, les points de
+variation du système sont désormais mieux localisés.
+</p>
+
+<p>
+Par exemple, une modification de la représentation textuelle des voyages n’exige plus de toucher aux classes métier :
+il suffit d’ajuster le visiteur concerné. Une modification du comportement d’un siège selon son état n’exige plus de
+parcourir des conditions complexes dans la classe principale : il suffit d’agir sur les classes d’état. Une
+modification d’une action administrative annulable se concentre désormais dans la commande correspondante.
+</p>
+
+<p>
+Cette localisation des changements réduit les effets de bord, simplifie les tests et diminue le risque d’introduire
+des régressions. Le système devient donc plus robuste dans la durée.
+</p>
+
+<h3>9.7 Amélioration de la réutilisabilité</h3>
+
+<p>
+Le devoir 2 mettait déjà en évidence certains modules réutilisables, notamment les abstractions du domaine.
+Le devoir 3 renforce cette réutilisabilité en ajoutant des mécanismes génériques qui dépassent le seul contexte
+du transport.
+</p>
+
+<p>
+Les patrons Fabrique, État, Observateur, Commande, Visiteur et Stratégie introduisent des structures de collaboration
+qui peuvent être réutilisées dans d’autres systèmes possédant des besoins comparables : création contrôlée d’objets,
+gestion d’états, synchronisation de vues, historique d’actions, formats d’affichage multiples ou variation
+d’algorithmes.
+</p>
+
+<p>
+Ainsi, le design ne se contente plus d’avoir des classes réutilisables ; il intègre désormais des solutions de
+conception elles-mêmes réutilisables, ce qui représente un gain de qualité supplémentaire.
+</p>
+
+<h3>9.8 Amélioration du diagramme de paquets</h3>
+
+<p>
+Le diagramme de paquets du devoir 3 reflète une architecture plus claire que celle du devoir 2. Les dépendances sont
+mieux organisées et les responsabilités liées aux patrons ne sont plus confondues avec les seules classes métier.
+Cela permet une meilleure lisibilité de l’architecture globale du système.
+</p>
+
+<p>
+Il est particulièrement important de noter que cette amélioration ne signifie pas nécessairement “un paquet par patron”.
+Au contraire, le design reste cohérent en regroupant les éléments selon des responsabilités architecturales utiles,
+ce qui évite une fragmentation excessive. Le diagramme de paquets montre ainsi une organisation plus rationnelle des
+dépendances, tout en conservant une bonne lisibilité structurelle.
+</p>
+
+<h3>9.9 Limites et points de vigilance</h3>
+
+<p>
+Même si le design du devoir 3 améliore nettement la qualité du système, cette amélioration s’accompagne aussi d’une
+augmentation de la complexité structurelle. L’introduction de plusieurs patrons ajoute davantage de classes et de
+relations, ce qui peut rendre le système plus coûteux à comprendre au premier abord.
+</p>
+
+<p>
+Cependant, cette complexité est ici justifiée, car elle permet de mieux maîtriser les variations, d’isoler les
+responsabilités et de rendre le système plus évolutif. En d’autres termes, la complexité du design augmente,
+mais elle devient une complexité organisée et utile, contrairement à une complexité implicite et dispersée.
+</p>
+
+<h3>9.10 Conclusion</h3>
+
+<p>
+En comparaison avec le devoir 2, le design du devoir 3 est plus mature sur le plan architectural.
+Il ne se contente plus d’être fonctionnel et modulaire : il devient aussi extensible, maintenable, plus faiblement
+couplé et mieux structuré face aux changements futurs.
+</p>
+
+<p>
+Les patrons de conception introduits améliorent explicitement la qualité du système en séparant les responsabilités,
+en réduisant les dépendances directes, en favorisant le polymorphisme et en isolant les points d’évolution.
+Ainsi, le passage du devoir 2 au devoir 3 représente une amélioration réelle de la conception, tant du point de vue
+des principes de génie logiciel que de la capacité du système à supporter des extensions ultérieures.
+</p>
+
+</div>
+
+</div>
+
+<!-- ========================== -->
+<div class="Contributions">
+
+<h2>10. Distribution des tâches</h2>
+
+<table>
+<tr>
+<th>Tâche</th>
+<th>Abdel</th>
+<th>Fahîma</th>
+<th>Olivier</th>
+<th>Reine</th>
+</tr>
+
+<tr>
+<td>Fabrique </td>
+<td>25%</td><td>25%</td><td>25%</td><td>25%</td>
+</tr>
+
+
+<tr>
+<td> Singleton</td>
+<td>25%</td><td>25%</td><td>25%</td><td>25%</td>
+</tr>
+
+<tr>
+<td>État</td>
+<td>25%</td><td>25%</td><td>25%</td><td>25%</td>
+</tr>
+
+<tr>
+<td>Observateur</td>
+<td>25%</td><td>25%</td><td>25%</td><td>25%</td>
+</tr>
+
+<tr>
+<td>Commande</td>
+<td>25%</td><td>25%</td><td>25%</td><td>25%</td>
+</tr>
+
+<tr>
+<td>Visiteur</td>
+<td>25%</td><td>25%</td><td>25%</td><td>25%</td>
+</tr>
+
+<tr>
+<td>Strategie</td>
+<td>25%</td><td>25%</td><td>25%</td><td>25%</td>
+</tr>
+
+<tr>
+<td>Proxy</td>
+<td>25%</td><td>25%</td><td>25%</td><td>25%</td>
+</tr>
+</table>
+
+<p>Contribution équilibrée entre les membres.</p>
+
+</div>
+
+</body>
+</html>
