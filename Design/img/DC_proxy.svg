@@ -126,16 +126,16 @@
       ><path d="M0 0 L0 15 L80 15 L80 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath41"
-      ><path d="M-7 -7 L37 -7 L37 26 L-7 26 L-7 -7 Z"
-      /></clipPath
-      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath42"
-      ><path d="M0 0 L0 15 L26 15 L26 0 Z"
-      /></clipPath
-      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath43"
       ><path d="M-7 -7 L51 -7 L51 51 L-7 51 L-7 -7 Z"
       /></clipPath
-      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath44"
+      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath42"
       ><path d="M0 0 L0 40 L40 40 L40 0 Z"
+      /></clipPath
+      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath43"
+      ><path d="M-7 -7 L37 -7 L37 26 L-7 26 L-7 -7 Z"
+      /></clipPath
+      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath44"
+      ><path d="M0 0 L0 15 L26 15 L26 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath45"
       ><path d="M0 0 L129 0 L129 190 L0 190 L0 0 Z"
@@ -314,8 +314,8 @@
       >+deleteCompany(ComapnyID : string) : boolean</text
     ></g
     ><g font-size="11px" transform="translate(740,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="271" xml:space="preserve" y="12" clip-path="url(#clipPath3)" stroke="none"
-      >&lt;&lt;Interface2&gt;&gt;</text
+    ><text x="273" xml:space="preserve" y="12" clip-path="url(#clipPath3)" stroke="none"
+      >&lt;&lt;Interface&gt;&gt;</text
       ><text x="255" xml:space="preserve" y="27" clip-path="url(#clipPath3)" font-weight="bold" stroke="none"
       >IControllerTransport</text
     ></g
@@ -759,20 +759,20 @@
     ><text x="15" xml:space="preserve" y="12" clip-path="url(#clipPath40)" stroke="none"
       >Aerienne</text
     ></g
-    ><g font-size="11px" transform="translate(228,538)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="10" xml:space="preserve" y="12" clip-path="url(#clipPath42)" stroke="none"
-      >*</text
-    ></g
     ><g font-size="11px" transform="translate(563,370)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="11" xml:space="preserve" y="24" clip-path="url(#clipPath44)" stroke="none"
+    ><text x="11" xml:space="preserve" y="24" clip-path="url(#clipPath42)" stroke="none"
       >1..*</text
     ></g
     ><g font-size="11px" transform="translate(387,354)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="11" xml:space="preserve" y="24" clip-path="url(#clipPath44)" stroke="none"
+    ><text x="11" xml:space="preserve" y="24" clip-path="url(#clipPath42)" stroke="none"
       >1..*</text
     ></g
     ><g font-size="11px" transform="translate(631,523)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="17" xml:space="preserve" y="24" clip-path="url(#clipPath44)" stroke="none"
+    ><text x="17" xml:space="preserve" y="24" clip-path="url(#clipPath42)" stroke="none"
+      >*</text
+    ></g
+    ><g font-size="11px" transform="translate(228,538)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><text x="10" xml:space="preserve" y="12" clip-path="url(#clipPath44)" stroke="none"
       >*</text
     ></g
     ><g fill-opacity="1" text-rendering="geometricPrecision" stroke="black" stroke-linecap="butt" transform="translate(1132,114)" stroke-opacity="1" fill="black" stroke-dasharray="5" font-family="sans-serif" stroke-linejoin="round" font-size="11px" stroke-dashoffset="1" image-rendering="optimizeQuality"
@@ -913,7 +913,7 @@
     ></g
     ><g font-size="8px" fill-opacity="1" fill="rgb(120,120,120)" text-rendering="geometricPrecision" image-rendering="optimizeQuality" stroke="rgb(120,120,120)" stroke-opacity="1"
     ><text x="0" xml:space="preserve" y="10" stroke="none"
-      >Visual Paradigm Standard(Marc(University of Montreal))</text
+      >Visual Paradigm Standard(fahim(University of Montreal))</text
     ></g
   ></g
 ></svg
