@@ -2,81 +2,118 @@ package Planification_voyage;
 
 import Configuration_espace.*;
 import Gestion_Transport.*;
+import Gestion_Reservation.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class MockDatabase {
     public static void initialiserDonnees(VoyageDataStructure db) {
         try {
-            // Utilisation du chemin relatif direct
-            File myObj = new File("database.txt"); 
+            File myObj = new File("Code\\database.txt");
             Scanner reader = new Scanner(myObj);
             
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
                 if (data.isEmpty()) continue;
-                
                 String[] parts = data.split(";");
-                String type = parts[0];
-                String id = parts[1];
                 
-                Voyage v = null;
-                
-                // Instanciation selon le type
-                if (type.equals("VOL")) {
-                    v = new Vol();
-                    v.setOrigine(new Aeroport(parts[2]));
-                    v.setDestination(new Aeroport(parts[3]));
-                } else if (type.equals("TRAJET")) {
-                    v = new Trajet();
-                    v.setOrigine(new Gare(parts[2]));
-                    v.setDestination(new Gare(parts[3]));
-                } else if (type.equals("ITINERAIRE")) {
-                    v = new Itineraire();
-                    v.setOrigine(new Port(parts[2]));
-                    v.setDestination(new Port(parts[3]));
-                }
-                
-                if (v != null) {
-                    v.setVoyageID(id);
-                    v.setDepart(LocalDateTime.parse(parts[4]));
-                    v.setArrivee(LocalDateTime.parse(parts[5]));
-                    
-                    // Gestion dynamique des sections
-                    double prix = Double.parseDouble(parts[6]);
-                    String sectionType = type.equals("ITINERAIRE") ? "P" : "AT";
-                    v.getSections().add(creerSection(id, prix, sectionType));
-                    
-                    // Traitement des escales multiples (séparées par des virgules)
-                    if (parts.length > 7 && !parts[7].isEmpty()) {
-                        String[] escalesRaw = parts[7].split(",");
-                        for (String escSigle : escalesRaw) {
-                            if (v instanceof Trajet) v.addEscale(new Gare(escSigle));
-                            else if (v instanceof Itineraire) v.addEscale(new Port(escSigle));
-                        }
+                Voyage v = creerInstanceVoyage(parts[0], parts[2], parts[3]);
+                if (v == null) continue;
+
+                v.setVoyageID(parts[1]);
+                v.setDepart(LocalDateTime.parse(parts[4]));
+                v.setArrivee(LocalDateTime.parse(parts[5]));
+
+                if (parts.length > 6 && !parts[6].isEmpty()) {
+                    for (String s : parts[6].split(",")) {
+                        if (v instanceof Trajet) v.addEscale(new Gare(s));
+                        else if (v instanceof Itineraire) v.addEscale(new Port(s));
                     }
-                    db.addVoyage(v);
                 }
+
+                if (parts.length > 7) {
+                    for (String sectData : parts[7].split("/")) {
+                        v.getSections().add(genererContenuSection(v, sectData));
+                    }
+                }
+                db.addVoyage(v);
             }
             reader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Fichier database.txt introuvable dans " + System.getProperty("user.dir"));
+        } catch (Exception e) {
+            System.out.println("Erreur de chargement : " + e.getMessage());
         }
     }
 
-    private static Section creerSection(String id, double prix, String type) {
-        if (type.equals("AT")) {
-            SectionAvionTrain s = new SectionAvionTrain("S-" + id);
-            s.setPrix(prix); s.setNbrePlace(50);
-            s.setClasse(ClasseAT.ECONOMIQUE); s.setDisposition(Disposition.MOYEN);
-            return s;
+    private static Section genererContenuSection(Voyage v, String data) {
+        String[] p = data.split(":");
+        String nomType = p[0];
+        
+        // CORRECTION : On convertit la lettre du fichier (S, C, M, L) vers l'Enum
+        Disposition disp = mapLettreADisposition(p[1]); 
+        
+        double prix = Double.parseDouble(p[2]);
+        int capacite = Integer.parseInt(p[3]);
+
+        if (v instanceof Itineraire) {
+            SectionPaquebot sp = new SectionPaquebot("S-" + nomType);
+            sp.setClasse(ClassePaquebot.valueOf(nomType));
+            sp.setPrix(prix);
+            for (int i = 1; i <= capacite; i++) {
+                Cabine c = new Cabine(nomType.substring(0,1) + "-" + i);
+                if (i % 5 == 0) c.actionner();
+                sp.addCabine(c);
+            }
+            return sp;
         } else {
-            SectionPaquebot s = new SectionPaquebot("P-" + id);
-            s.setPrix(prix); s.setNbrePlace(20);
-            s.setClasse(ClassePaquebot.INTERIEURE);
-            return s;
+            SectionAvionTrain sat = new SectionAvionTrain("S-" + nomType);
+            sat.setClasse(ClasseAT.valueOf(nomType));
+            sat.setDisposition(disp);
+            sat.setPrix(prix);
+
+            int colonnes = getNbColonnes(disp);
+            int rangees = (int) Math.ceil((double) capacite / colonnes);
+
+            for (int r = 1; r <= rangees; r++) {
+                for (int c = 0; c < colonnes; c++) {
+                    if (((r-1) * colonnes + c) >= capacite) break;
+                    char lettre = (char) ('A' + c);
+                    Siege s = new Siege(nomType.substring(0,1) + "-" + r + lettre);
+                    if (r % 2 == 0) s.actionner(); 
+                    sat.addSiege(s);
+                }
+            }
+            return sat;
         }
+    }
+
+    // NOUVELLE MÉTHODE : Fait le pont entre ton fichier et ton Enum
+    private static Disposition mapLettreADisposition(String lettre) {
+        switch (lettre) {
+            case "S": return Disposition.ETROIT;
+            case "C": return Disposition.CONFORT;
+            case "M": return Disposition.MOYEN;
+            case "L": return Disposition.LARGE;
+            default: return Disposition.ETROIT;
+        }
+    }
+
+    private static int getNbColonnes(Disposition d) {
+        if (d == null) return 3;
+        // CORRECTION : Utilisation des noms complets de ton Enum
+        switch(d) {
+            case ETROIT: return 3;
+            case CONFORT: return 4;
+            case MOYEN: return 6;
+            case LARGE: return 10;
+            default: return 3;
+        }
+    }
+
+    private static Voyage creerInstanceVoyage(String type, String o, String d) {
+        if (type.equals("VOL")) { Vol v = new Vol(); v.setOrigine(new Aeroport(o)); v.setDestination(new Aeroport(d)); return v; }
+        if (type.equals("TRAJET")) { Trajet t = new Trajet(); t.setOrigine(new Gare(o)); t.setDestination(new Gare(d)); return t; }
+        if (type.equals("ITINERAIRE")) { Itineraire i = new Itineraire(); i.setOrigine(new Port(o)); i.setDestination(new Port(d)); return i; }
+        return null;
     }
 }

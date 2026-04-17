@@ -12,11 +12,11 @@ public class Main {
 
         // Démo d'affichage
         ProfilVisiteur admin = new AdminVisiteur();
-        System.out.println("\n--- VUE ADMINISTRATEUR (Depuis fichier) ---");
+        System.out.println("\n--- VUE ADMINISTRATEUR ---");
         db.accept(admin);
 
         ProfilVisiteur client = new Client();
-        System.out.println("\n--- VUE CLIENT (Depuis fichier) ---");
+        System.out.println("\n--- VUE CLIENT ---");
         db.accept(client);
     }
 }

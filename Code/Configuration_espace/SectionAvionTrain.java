@@ -11,6 +11,16 @@ public class SectionAvionTrain extends Section {
     public SectionAvionTrain(String id) {
         super(id);
     }
+    public int getNbSiegesOccupes() {
+        int count = 0;
+        for (Siege s : listeSieges) if (!s.getDisponibilite()) count++;
+        return count;
+    }
+    public int getNbTotalSieges() { return listeSieges.size(); }
+
+    public void addSiege(Siege s) { // Ajout de la méthode manquante
+            this.listeSieges.add(s);
+        }
 
     @Override
     public int getNbReserves() {

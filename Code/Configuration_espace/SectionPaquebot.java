@@ -11,6 +11,17 @@ public class SectionPaquebot extends Section {
         super(id);
     }
 
+    public int getNbCabinesOccupees() {
+    int count = 0;
+    for (Cabine c : listeCabines) if (!c.getDisponibilite()) count++;
+    return count;
+}
+public int getNbTotalCabines() { return listeCabines.size(); }
+
+    public void addCabine(Cabine c) { // Ajout de la méthode manquante
+        this.listeCabines.add(c);
+    }
+
     @Override
     public int getNbReserves() {
         int count = 0;
