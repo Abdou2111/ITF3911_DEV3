@@ -8,5 +8,3 @@ public class Vol extends Voyage {
         profil.visitVol(this); // Redirection spécifique
     }
 }
-
-// Les classes Trajet et Itineraire suivent la même logique avec visitTrajet et visitItineraire.

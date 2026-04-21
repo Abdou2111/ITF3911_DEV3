@@ -11,6 +11,7 @@ public class ControllerVoyage {
     public List<Voyage> rechercheVoyage(LieuTransport origin, LieuTransport destination, ClasseAT classe) {
         List<Voyage> resultats = new ArrayList<>();
         for (Voyage v : db.getListeVoyages()) {
+            
             // Logique de filtrage par origine et destination
             if (v.getOrigine().equals(origin.getSigle()) && v.getDestination().equals(destination.getSigle())) {
                 resultats.add(v);

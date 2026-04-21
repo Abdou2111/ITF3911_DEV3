@@ -16,7 +16,7 @@ public class StrategyPrixPaquebot implements StrategyPrix {
             ClassePaquebot classe = sp.getClasse();
 
             switch (classe) {
-                case SUITE: return prixDeBase * 1.20; // Plus cher que le tarif de base
+                case SUITE: return prixDeBase * 1.20;
                 case VUE_SUR_OCEAN: return prixDeBase * 1.0;
                 case FAMILLE: return prixDeBase * 0.85;
                 case INTERIEURE: return prixDeBase * 0.70;

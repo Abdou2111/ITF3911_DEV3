@@ -6,7 +6,7 @@ import Planification_voyage.*;
 public class AvionFactory extends AbstractFactory {
     private static AvionFactory instance;
 
-    private AvionFactory() {} // Constructeur privé
+    private AvionFactory() {}
 
     public static AvionFactory getInstance() {
         if (instance == null) {
