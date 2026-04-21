@@ -24,11 +24,15 @@ public class Client extends ProfilVisiteur {
         sb.append(tag).append(v.getVoyageID()).append("(").append(v.formatDates()).append(")");
 
         for (Section s : v.getSections()) {
-            boolean ok = (s instanceof SectionAvionTrain && ((SectionAvionTrain)s).getClasse() == classeCible) ||
-                         (s instanceof SectionPaquebot && ((SectionPaquebot)s).getClasse() == classeCible);
-            if (ok) {
-                sb.append("|").append(s.getPrix()).append("$|Disp:").append(s.calculerPlacesLibres());
+            if (s instanceof SectionAvionTrain) {
+                SectionAvionTrain sat = (SectionAvionTrain) s;
+                String code = sat.getClasse().toString().substring(0,1) + sat.getDisposition().toString().substring(0,1);
+                sb.append("|").append(code).append(sat.getNbTotalSieges() - sat.getNbReserves());
+            } else if (s instanceof SectionPaquebot) {
+                SectionPaquebot sp = (SectionPaquebot) s;
+                sb.append("|").append(sp.getClasse().toString().substring(0,1)).append(sp.getNbTotalCabines() - sp.getNbReserves());
             }
+
         }
         System.out.println(sb.toString());
         System.out.println("");

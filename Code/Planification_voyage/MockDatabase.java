@@ -2,7 +2,6 @@ package Planification_voyage;
 
 import Configuration_espace.*;
 import Gestion_Transport.*;
-import Gestion_Reservation.*;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class MockDatabase {
     public static void initialiserDonnees(VoyageDataStructure db) {
         try {
-            File myObj = new File("Code\\database.txt");
+            File myObj = new File("Code/database.txt");
             Scanner reader = new Scanner(myObj);
             
             while (reader.hasNextLine()) {
@@ -49,7 +48,7 @@ public class MockDatabase {
         String[] p = data.split(":");
         String nomType = p[0];
         
-        // CORRECTION : On convertit la lettre du fichier (S, C, M, L) vers l'Enum
+       
         Disposition disp = mapLettreADisposition(p[1]); 
         
         double prix = Double.parseDouble(p[2]);
@@ -59,6 +58,7 @@ public class MockDatabase {
             SectionPaquebot sp = new SectionPaquebot("S-" + nomType);
             sp.setClasse(ClassePaquebot.valueOf(nomType));
             sp.setPrix(prix);
+            //sp.setNbrePlace(capacite);
             for (int i = 1; i <= capacite; i++) {
                 Cabine c = new Cabine(nomType.substring(0,1) + "-" + i);
                 if (i % 5 == 0) c.actionner();
@@ -70,6 +70,7 @@ public class MockDatabase {
             sat.setClasse(ClasseAT.valueOf(nomType));
             sat.setDisposition(disp);
             sat.setPrix(prix);
+            //sat.setNbrePlace(capacite);
 
             int colonnes = getNbColonnes(disp);
             int rangees = (int) Math.ceil((double) capacite / colonnes);
@@ -87,7 +88,7 @@ public class MockDatabase {
         }
     }
 
-    // NOUVELLE MÉTHODE : Fait le pont entre ton fichier et ton Enum
+    
     private static Disposition mapLettreADisposition(String lettre) {
         switch (lettre) {
             case "S": return Disposition.ETROIT;
@@ -100,7 +101,6 @@ public class MockDatabase {
 
     private static int getNbColonnes(Disposition d) {
         if (d == null) return 3;
-        // CORRECTION : Utilisation des noms complets de ton Enum
         switch(d) {
             case ETROIT: return 3;
             case CONFORT: return 4;

@@ -18,7 +18,7 @@ public class SectionAvionTrain extends Section {
     }
     public int getNbTotalSieges() { return listeSieges.size(); }
 
-    public void addSiege(Siege s) { // Ajout de la méthode manquante
+    public void addSiege(Siege s) { 
             this.listeSieges.add(s);
         }
 
@@ -26,7 +26,7 @@ public class SectionAvionTrain extends Section {
     public int getNbReserves() {
         int count = 0;
         for (Siege s : listeSieges) {
-            if (!s.getDisponibilite()) count++; // Si non dispo = réservé
+            if (!s.getDisponibilite()) count++; 
         }
         return count;
     }

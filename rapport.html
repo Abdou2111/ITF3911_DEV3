@@ -39,18 +39,19 @@ img { max-width: 100%; margin-top: 15px; }
 <h2>1. Patron Fabrique </h2>
 
 <img src="Design\img\DC_fabrique_abstraite.svg">
+
+<br><br><br>
+
+<p> <b>Diagramme de séquence du patron Fabrique</b></p>
 <img src="Design\img\Ds_fabrique.svg">
 
 <p>
-Le patron Fabrique est utilisé pour encapsuler la création des entités de voyage (Vol, Trajet, Itinéraire).
-Chaque type de transport possède sa propre fabrique spécialisée (FabriqueAvion, FabriqueTrain, FabriqueBateau).
+Le patron Fabrique est utilisé pour encapsuler la création des entités de voyage par (avion, Train, Bateau).
+Chaque type de transport possède sa propre fabrique spécialisée (AvionFactory, TrainFactory, PaquebotFactory).
 Nous avons decidé de travailler sur une fabrique abstraite  due au fait que le singleton  y est  implicitement  
-et don aussi pour éviter la duplication de code et faciliter l’ajout de nouveaux types de transport à l’avenir.
+et donc aussi pour éviter la duplication de code et faciliter l’ajout de nouveaux types de transport à l’avenir.
 </p>
 
-
-
-<p><b>Amélioration :</b> découplage entre création et utilisation des objets.</p>
 
 </div>
 
@@ -61,16 +62,14 @@ et don aussi pour éviter la duplication de code et faciliter l’ajout de nouve
 
 <h2>2.  Singleton</h2>
 
-<img src="Design\DC_singleton.svg">
-
-
 
 <p>
+On a decidé de ne pas repeter le diagramme de classe du patron fabrique  dans cette section  du ingleton etant donné qu'il se troucve implicitement 
+dans  celui de la fabrique .
 Le patron Singleton est combiné à la fabrique afin de garantir une instance unique de chaque fabrique.
 Cela permet de centraliser la création des objets et d’éviter la duplication des instances.
 </p>
 
-<p><b>Amélioration :</b> découplage entre création et utilisation des objets.</p>
 
 </div>
 
@@ -81,6 +80,10 @@ Cela permet de centraliser la création des objets et d’éviter la duplication
 <h2>3. Patron État</h2>
 
 <img src="Design\img\DC_etat.svg">
+
+<br><br><br>
+<p> <b>Diagramme de séquence du patron État</b></p>
+
 <img src="Design\img\Ds_etat.svg">
 
 <p>
@@ -92,7 +95,6 @@ Disponible, Réservé, Confirmé, Annulé.
 Chaque état encapsule son propre comportement, ce qui évite les structures conditionnelles complexes.
 </p>
 
-<p><b>Amélioration :</b> meilleure extensibilité et respect du principe OCP.</p>
 
 </div>
 
@@ -102,6 +104,10 @@ Chaque état encapsule son propre comportement, ce qui évite les structures con
 <h2>4. Patron Observateur</h2>
 
 <img src="Design\img\DC_observateur.svg">
+
+<br><br><br>
+<p> <b>Diagramme de séquence du patron Observateur</b></p>
+
 <img src="Design\img\Ds_observateur.svg">
 
 <p>
@@ -112,7 +118,6 @@ Le modèle interne agit comme sujet (Subject) tandis que les interfaces client e
 Toute modification du modèle est automatiquement propagée aux vues.
 </p>
 
-<p><b>Amélioration :</b> synchronisation automatique et faible couplage.</p>
 
 </div>
 
@@ -122,17 +127,22 @@ Toute modification du modèle est automatiquement propagée aux vues.
 <h2>5. Patron Commande</h2>
 
 <img src="Design\img\DC_commande.svg">
+
+<br><br><br>
+<p> <b>Diagramme de séquence du patron Commande</b></p>
+
+
 <img src="Design\img\Ds_commande.svg">
+
 
 <p>
 Chaque action administrative est encapsulée dans une commande (AjouterVoyage, ModifierPrix, etc.).
 </p>
 
 <p>
-Les commandes peuvent être annulées grâce à une pile d’historique.
+Les commandes peuvent être annulées grâce à une pile d’historique stockée dans invoker.
 </p>
 
-<p><b>Amélioration :</b> gestion du undo et découplage des actions.</p>
 
 </div>
 
@@ -153,7 +163,6 @@ administratif et client.
 Cela permet de séparer la logique métier de la logique d’affichage.
 </p>
 
-<p><b>Amélioration :</b> ajout de nouveaux comportements sans modifier les classes.</p>
 
 </div>
 
@@ -180,12 +189,13 @@ Permet d’intégrer de nouveaux systèmes de transport sans modifier le code ex
 <!-- ========================== -->
 <div class="DiagrammePaquet">
 
+
 <h2>8. Diagramme de paquets</h2>
 
 <img src="Design\img\Diagramme_de_paquet.svg">
 
 <p>
-Le système est structuré en modules : Voyage, Réservation, Interface, Fabrique, etc.
+Le système est structuré en modules : PlanificatioVoyage, ConfigurationEspace, GestionRéservation, Utilisateurs, etc .
 </p>
 
 </div>
@@ -259,7 +269,7 @@ On obtient donc un couplage plus faible entre les interfaces tout en préservant
 </p>
 
 <p>
-Le patron Commande réduit aussi le couplage entre l’interface administrative et les objets métier. L’interface
+Le patron Commande réduit aussi le couplage entre l’interface administrative et les commandes . L’interface
 ne manipule plus directement toute la logique de modification ; elle délègue cette responsabilité à des objets
 commande spécialisés. Cela rend l’architecture plus flexible et plus facile à étendre.
 </p>

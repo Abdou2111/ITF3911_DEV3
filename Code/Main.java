@@ -3,8 +3,7 @@ import Utilisateurs.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Système de Transport UdeM ===\n");
-
+        
         VoyageDataStructure db = new VoyageDataStructure();
 
         // Chargement automatique depuis le fichier texte
