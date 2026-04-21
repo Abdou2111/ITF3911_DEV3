@@ -58,7 +58,6 @@ public class MockDatabase {
             SectionPaquebot sp = new SectionPaquebot("S-" + nomType);
             sp.setClasse(ClassePaquebot.valueOf(nomType));
             sp.setPrix(prix);
-            //sp.setNbrePlace(capacite);
             for (int i = 1; i <= capacite; i++) {
                 Cabine c = new Cabine(nomType.substring(0,1) + "-" + i);
                 if (i % 5 == 0) c.actionner();
@@ -70,7 +69,6 @@ public class MockDatabase {
             sat.setClasse(ClasseAT.valueOf(nomType));
             sat.setDisposition(disp);
             sat.setPrix(prix);
-            //sat.setNbrePlace(capacite);
 
             int colonnes = getNbColonnes(disp);
             int rangees = (int) Math.ceil((double) capacite / colonnes);

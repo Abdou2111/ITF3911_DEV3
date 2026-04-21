@@ -1,10 +1,10 @@
 package Configuration_espace;
 
+import Gestion_Transport.Compagnie;
+import Tarification.StrategyPrix;
+import Utilisateurs.ProfilVisiteur;
 import java.util.ArrayList;
 import java.util.List;
-import Tarification.StrategyPrix;
-import Gestion_Transport.Compagnie;
-import Utilisateurs.ProfilVisiteur;
 
 public abstract class Section {
     protected double prix;
