@@ -1,6 +1,6 @@
 package Configuration_espace;
-import Gestion_Reservation.State;
 import Gestion_Reservation.Reserve;
+import Gestion_Reservation.State;
 
 public class Cabine {
     private int capacity;
@@ -9,13 +9,13 @@ public class Cabine {
     private State current_state;
 
 
-    public Cabine(String id) { // Correction du constructeur
+    public Cabine(String id) { 
         this.IDCabine = id;
         this.current_state = new Reserve(); 
     }
 
 
-    public void actionner() { // Ajout de la méthode actionner
+    public void actionner() { 
         current_state.event(this);
     }
 
@@ -27,7 +27,7 @@ public class Cabine {
         }
     }
 
-    // --- Getters & Setters ---
+    
     public int getCapacity() { return capacity; }
     public void setCapacity(int c) { this.capacity = c; }
     public boolean getDisponibilite() { return disponibilite; }

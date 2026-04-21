@@ -2,8 +2,8 @@ package Gestion_Reservation;
 
 import Configuration_espace.Siege;
 import Gestion_paiement.Paiement;
-import java.time.LocalDateTime;
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class ControllerReservation {
 
@@ -26,7 +26,7 @@ public class ControllerReservation {
             long heures = Duration.between(r.getDateReservation(), LocalDateTime.now()).toHours();
             if (heures >= 24) {
                 r.setEtat(Etat.ANNULE);
-                // Note : Il faudrait aussi notifier le siège/cabine pour repasser à l'état libre
+                
             }
         }
     }

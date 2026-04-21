@@ -2,17 +2,13 @@ package Gestion_paiement;
 
 import java.time.LocalDateTime;
 
-/**
- * Gère la transaction financière associée à une réservation.
- * C'est l'entité responsable de la validation finale du voyage.
- */
+
 public class Paiement {
     private String numConfirmation;
     private double montant;
     private LocalDateTime datePaiement;
     private String numPassportClient;
 
-    // --- Constructeurs ---
 
     public Paiement() {
     }
@@ -27,7 +23,7 @@ public class Paiement {
      * Cette opération est le déclencheur pour confirmer une réservation.
      */
     public boolean effectuerPaiement() {
-        // Logique de validation simulée
+        
         if (this.montant > 0 && this.numPassportClient != null) {
             this.numConfirmation = "CONF-" + System.currentTimeMillis();
             this.datePaiement = LocalDateTime.now();

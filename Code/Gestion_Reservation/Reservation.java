@@ -1,9 +1,9 @@
 package Gestion_Reservation;
 
+import Utilisateurs.ProfilVisiteur;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import Utilisateurs.ProfilVisiteur;
 
 public abstract class Reservation {
     protected String numReservation;
@@ -21,13 +21,13 @@ public abstract class Reservation {
     public void detach(ProfilVisiteur p) { observateurs.remove(p); }
     
     public void notifyObservers() {
-        for (ProfilVisiteur p : observateurs) { p.update(); } //
+        for (ProfilVisiteur p : observateurs) { p.update(); } 
     }
 
     // --- Getters & Setters ---
     public void setEtat(Etat nouvelEtat) {
         this.etat = nouvelEtat;
-        notifyObservers(); //
+        notifyObservers(); 
     }
 
     public Etat getEtat() { return etat; }

@@ -1,23 +1,23 @@
 package Configuration_espace;
 
-import Gestion_Reservation.State;
 import Gestion_Reservation.Priorite;
 import Gestion_Reservation.Reserve;
+import Gestion_Reservation.State;
 
 public class Siege {
     private int rangee;
     private char colonne;
-    private boolean disponibilite = true; // Par défaut disponible
+    private boolean disponibilite = true; 
     private Priorite priorite;
     private String IDSiege;
     private State current_state;
 
-    public Siege(String id) { // Correction du constructeur
+    public Siege(String id) { 
         this.IDSiege = id;
         this.current_state = new Reserve();
     }
 
-    public void actionner() { // Ajout de la méthode actionner
+    public void actionner() { 
         current_state.event(this);
     }
 
@@ -25,7 +25,7 @@ public class Siege {
 
     public void event(String e) {
         if (current_state != null) {
-            current_state.event(this); // Délégation
+            current_state.event(this); 
         }
     }
 

@@ -1,10 +1,10 @@
 package Gestion_Transport;
 
+import Patrons_technique.Fabrique_Abstraite.*;
+import Planification_voyage.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import Patrons_technique.Fabrique_Abstraite.*;
-import Planification_voyage.*;
 
 public class ControllerTransport implements IControllerTransport {
     private List<LieuTransport> listeLieux = new ArrayList<>();
@@ -47,8 +47,8 @@ public class ControllerTransport implements IControllerTransport {
         Voyage v = factory.createVoyage();
         v.setDepart(depart);
         v.setArrivee(arrivee);
-        v.setOrigine(origin);    // Nécessite setOrigine dans Voyage
-        v.setDestination(dest); // Nécessite setDestination dans Voyage
+        v.setOrigine(origin);    
+        v.setDestination(dest); 
         return listeVoyages.add(v);
     }
 
@@ -66,7 +66,7 @@ public class ControllerTransport implements IControllerTransport {
     }
 }
 
-    // Getters pour la cohérence inter-contrôleurs
+    
     public List<LieuTransport> getListeLieux() { return listeLieux; }
     public List<Compagnie> getListeCompagnies() { return listeCompagnies; }
     public List<Voyage> getListeVoyages() { return listeVoyages; }

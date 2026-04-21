@@ -18,7 +18,7 @@ public class SectionPaquebot extends Section {
 }
 public int getNbTotalCabines() { return listeCabines.size(); }
 
-    public void addCabine(Cabine c) { // Ajout de la méthode manquante
+    public void addCabine(Cabine c) { 
         this.listeCabines.add(c);
     }
 

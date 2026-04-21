@@ -17,21 +17,19 @@ public abstract class Section {
         this.IDSection = id;
     }
 
-    // --- Logique métier ---
+    
     public double calculerPrix(Compagnie c) {
         if (this.strategiePrix != null) {
-            return this.strategiePrix.calculerPrix(this, c); // Patron Strategy
+            return this.strategiePrix.calculerPrix(this, c);
         }
         return this.prix;
     }
 
-    /**
-     * Doit être implémentée par les enfants pour compter les sièges/cabines occupés.
-     */
+    
     public abstract int getNbReserves();
 
     public int calculerPlacesLibres() {
-        return this.nbrePlace - getNbReserves(); //
+        return this.nbrePlace - getNbReserves(); 
     }
 
     // --- Patron Observateur ---
