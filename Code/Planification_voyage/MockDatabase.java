@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class MockDatabase {
     public static void initialiserDonnees(VoyageDataStructure db) {
         try {
-            File myObj = new File("Code/database.txt");
+            File myObj = new File("database.txt");
             Scanner reader = new Scanner(myObj);
             
             while (reader.hasNextLine()) {
